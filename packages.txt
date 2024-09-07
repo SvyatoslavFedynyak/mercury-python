@@ -1,0 +1,11 @@
+zlib1g-dev
+libssl-dev
+
+# MacOs
+
+gcc
+xcode-select --install
+tcpreplay
+valgrind
+openssl
+llvm
