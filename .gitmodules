@@ -1,3 +1,4 @@
 [submodule "mercury"]
 	path = mercury
 	url = git@github.com:SvyatoslavFedynyak/mercury.git
+	branch = main
