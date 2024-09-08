@@ -32,7 +32,7 @@ jobs:
         if: runner.os == 'Linux'
         uses: docker/setup-qemu-action@v3
         with:
-          platforms: aarch64
+          platforms: all
 
       - name: Install pip packages
         run: python -m pip install cython cibuildwheel==2.20.0
@@ -44,6 +44,6 @@ jobs:
         uses: pypa/cibuildwheel@v2.20.0
         env:
           CIBW_ARCHS_LINUX: x86_64 #aarch64
-          CIBW_ENVIRONMENT: CC='g++' CXX='g++' ENV_CFLAGS='-DSSLNEW'
+          CIBW_ENVIRONMENT: CC='g++' CXX='g++' #ENV_CFLAGS='-DSSLNEW'
           CIBW_SKIP: "*-musllinux_* pp*"
           CIBW_BEFORE_ALL: yum install -y openssl-devel make zlib-devel || apt-get install -y zlib1g-dev libssl-dev make || apk add zlib1g-dev libssl-dev make
