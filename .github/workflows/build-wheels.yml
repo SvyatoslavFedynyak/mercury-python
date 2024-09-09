@@ -50,7 +50,7 @@ jobs:
         env:
           CIBW_ARCHS_LINUX: x86_64 #aarch64 TODO add ARM instances
           CIBW_ENVIRONMENT: CC='g++' CXX='g++'
-          CIBW_SKIP: "*-musllinux_* pp* cp1*" # TODO remove cp1*
+          CIBW_SKIP: "*-musllinux_* pp* cp31* cp36* cp37* cp38*" # TODO remove cp*
           CIBW_BEFORE_ALL: yum install -y openssl-devel make zlib-devel || apt-get install -y zlib1g-dev libssl-dev make || apk add zlib1g-dev libssl-dev make
 
       - name: Publish package distributions to PyPI
