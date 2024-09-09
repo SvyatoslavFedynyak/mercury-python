@@ -71,7 +71,7 @@ print("additional_flags =", repr(additional_flags))
 
 
 setup(
-    name="mercury-python",
+    name="mercury-python-test", # TOD remove '-test'
     version=version_str,
     description="Python interface into mercury's network protocol fingerprinting and analysis functionality",
     long_description=readme(),

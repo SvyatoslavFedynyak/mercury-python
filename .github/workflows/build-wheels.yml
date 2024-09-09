@@ -2,16 +2,19 @@ name: Mercury wheels Build and Publish cibuildwheels
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - 'mercury/*'
+#  push:
+#    branches:
+#      - main
 
 jobs:
   build-mercury-wheels:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    environment:
+      name: pypi
+      url: https://pypi.org/p/mercury-python
+    permissions:
+      id-token: write
     strategy:
       matrix:
         os: [ubuntu-latest]
@@ -46,6 +49,9 @@ jobs:
         uses: pypa/cibuildwheel@v2.20.0
         env:
           CIBW_ARCHS_LINUX: x86_64 #aarch64
-          CIBW_ENVIRONMENT: CC='g++' CXX='g++' #ENV_CFLAGS='-DSSLNEW'
+          CIBW_ENVIRONMENT: CC='g++' CXX='g++'
           CIBW_SKIP: "*-musllinux_* pp*"
           CIBW_BEFORE_ALL: yum install -y openssl-devel make zlib-devel || apt-get install -y zlib1g-dev libssl-dev make || apk add zlib1g-dev libssl-dev make
+
+#      - name: Publish package distributions to PyPI
+#        uses: pypa/gh-action-pypi-publish@release/v1
